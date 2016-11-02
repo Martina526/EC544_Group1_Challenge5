@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type = "text/javascript"
+         src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link rel="stylesheet" type="text/css" href="css/custom-bars.css" />
+
+
+	<ul id="messages"></ul>
+	<form action="">
+		<input id="m" autocomplete="off" /><button>Send</button>
+	</form>
+<script src="/socket.io/socket.io.js"></script>
+
+
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<style>
+    	button#start {
+    	    position: relative;
+    	    background-color: rgba(76, 176, 80, 0.64);
+    	    border: none;
+    	    font-size: 28px;
+    	    color: #FFFFFF;
+    	    padding: 20px;
+    	    width: 150px;
+    	    text-align: center;
+    	    -webkit-transition-duration: 0.4s; /* Safari */
+    	    transition-duration: 0.4s;
+    	    text-decoration: none;
+    	    overflow: hidden;
+    	    cursor: pointer;
+    			border-radius: 100px;
+    	}
+
+    	button#start:after {
+    	    content: "";
+    	    background: #f1f1f1;
+    	    display: block;
+    	    position: absolute;
+    	    padding-top: 300%;
+    	    padding-left: 350%;
+    	    margin-left: -20px !important;
+    	    margin-top: -120%;
+    	    opacity: 0;
+    	    transition: all 0.8s
+    	}
+
+    	button#start:active:after {
+    	    padding: 0;
+    	    margin: 0;
+    	    opacity: 1;
+    	    transition: 0s
+    	}
+
+
+
+
+    	button#stop {
+    			position: relative;
+    			background-color: rgba(76, 176, 80, 0.64);
+    			border: none;
+    			font-size: 28px;
+    			color: #FFFFFF;
+    			padding: 20px;
+    			width: 150px;
+    			text-align: center;
+    			-webkit-transition-duration: 0.4s; /* Safari */
+    			transition-duration: 0.4s;
+    			text-decoration: none;
+    			overflow: hidden;
+    			cursor: pointer;
+    			border-radius: 100px;
+    	}
+
+    	button#stop:after {
+    			content: "";
+    			background: #f1f1f1;
+    			display: block;
+    			position: absolute;
+    			padding-top: 300%;
+    			padding-left: 350%;
+    			margin-left: -20px !important;
+    			margin-top: -120%;
+    			opacity: 0;
+    			transition: all 0.8s
+    	}
+
+    	button#stop:active:after {
+    			padding: 0;
+    			margin: 0;
+    			opacity: 1;
+    			transition: 0s
+    	}
+
+
+      #stage{border:solid 1px #2d2d2d;
+          text-align:center;
+          font-size: 300%;
+          font-family: fantasy;
+          background:rgba(104, 209, 177, 0.77);
+          padding:74px;
+          -moz-border-radius: 5px;
+           -webkit-border-radius:
+           5px; border-radius: 5px;}
+      /* =Your Generated css
+      |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+      #stage{border:dashed 9px #ffffff;
+        -moz-border-radius-topleft: 5px;
+         -moz-border-radius-topright:5px;
+         -moz-border-radius-bottomleft:5px;
+         -moz-border-radius-bottomright:5px;
+         -webkit-border-top-left-radius:5px;
+          -webkit-border-top-right-radius:5px;
+           -webkit-border-bottom-left-radius:5px;
+           -webkit-border-bottom-right-radius:5px;
+           border-top-left-radius:5px;
+           border-top-right-radius:5px;
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px;}
+      /* End of Your Generated css
+      |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+</style>
+
+<script>
+var socket = io();
+</script>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script type = "text/javascript" language = "javascript">
+				var socket = io();
+				socket.on('chat message', function(data){
+				  var speed = data;
+				alert(speed);
+				});
+
+				function start(){
+					socket.emit('start',"");
+				}
+				function stop(){
+					socket.emit('stop',"");
+				}
+</script>
+
+</head>
+
+<body>
+	<div class="container">
+		<header class="codrops-header">
+			<h1>EC 544 Group 1 <span> Particle - control - Car </span></h1>
+		</header>
+
+		<section class="content">
+			<!-- <h2>h2</h2> -->
+			<article class="flexy-grid">
+        <div id = "stage" >
+              Show speed here
+        </div>
+				<input type="checkbox" id="bar-1">
+				<div class="flexy-column">
+					<div class="progress-factor flexy-item">
+
+            <button id = "start" onclick="start()">Start</button>
+            <button id = "stop" onclick="stop()">Stop</button>
+
+						<div class="progress-bar">
+						<div class="bar has-rotation has-colors navy ruler" role="progressbar" aria-valuenow=30 aria-valuemin="0" aria-valuemax="100" id="bar-0_0">
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>
+		</section>
+		<!-- Related demos -->
+
+	</div>
+
+
+
+
+	<!-- /container -->
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		$("#change-color .bar").hover(function(){
+			// $(this).toggleClass('active');
+			$(this).find('.front').toggleClass('shine');
+		});
+		// $("#change-color .bar").click(function(){
+		//     $(this).toggleClass('sleep');
+		// });
+	</script>
+</body>
+
+</html>
